@@ -1,0 +1,1631 @@
+INFO 2025-06-22 18:56:25,042 autoreload 29504 30960 Watching for file changes with StatReloader
+INFO 2025-06-22 20:29:45,513 autoreload 24676 30488 Watching for file changes with StatReloader
+INFO 2025-06-22 20:31:44,358 autoreload 10712 32124 Watching for file changes with StatReloader
+WARNING 2025-06-22 20:31:46,993 log 10712 27008 Not Found: /
+WARNING 2025-06-22 20:31:46,994 basehttp 10712 27008 "GET / HTTP/1.1" 404 4890
+ERROR 2025-06-22 20:32:04,712 log 10712 27008 Internal Server Error: /loans/
+Traceback (most recent call last):
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+MySQLdb.ProgrammingError: (1146, "Table 'cibil_checkerr.loans' doesn't exist")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\views\decorators\csrf.py", line 55, in wrapped_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\views\generic\base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\generics.py", line 239, in get
+    return self.list(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\mixins.py", line 40, in list
+    page = self.paginate_queryset(queryset)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\generics.py", line 171, in paginate_queryset
+    return self.paginator.paginate_queryset(queryset, self.request, view=self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\pagination.py", line 204, in paginate_queryset
+    self.page = paginator.page(page_number)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\paginator.py", line 75, in page
+    number = self.validate_number(number)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\paginator.py", line 53, in validate_number
+    if number > self.num_pages:
+                ^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\utils\functional.py", line 49, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\paginator.py", line 102, in num_pages
+    if self.count == 0 and not self.allow_empty_first_page:
+       ^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\utils\functional.py", line 49, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\paginator.py", line 96, in count
+    return c()
+           ^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\query.py", line 470, in count
+    return self.query.get_count(using=self.db)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\sql\query.py", line 552, in get_count
+    number = obj.get_aggregation(using, ["__count"])["__count"]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\sql\query.py", line 537, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\sql\compiler.py", line 1361, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+django.db.utils.ProgrammingError: (1146, "Table 'cibil_checkerr.loans' doesn't exist")
+ERROR 2025-06-22 20:32:04,725 basehttp 10712 27008 "GET /loans/ HTTP/1.1" 500 222033
+INFO 2025-06-22 20:33:08,702 autoreload 33012 21556 Watching for file changes with StatReloader
+WARNING 2025-06-22 20:33:11,366 log 33012 31080 Not Found: /
+WARNING 2025-06-22 20:33:11,368 basehttp 33012 31080 "GET / HTTP/1.1" 404 4890
+INFO 2025-06-22 20:42:17,044 autoreload 33012 21556 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\models.py changed, reloading.
+INFO 2025-06-22 20:42:18,383 autoreload 22200 21960 Watching for file changes with StatReloader
+INFO 2025-06-22 20:48:22,261 autoreload 22264 22500 Watching for file changes with StatReloader
+WARNING 2025-06-22 21:29:09,553 log 22264 34316 Not Found: /
+WARNING 2025-06-22 21:29:09,556 basehttp 22264 34316 "GET / HTTP/1.1" 404 4890
+ERROR 2025-06-22 21:29:30,825 log 22264 34316 Internal Server Error: /loans/
+Traceback (most recent call last):
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+MySQLdb.ProgrammingError: (1146, "Table 'cibil_checkerr.main_app_loan' doesn't exist")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\views\decorators\csrf.py", line 55, in wrapped_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\views\generic\base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\generics.py", line 239, in get
+    return self.list(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\mixins.py", line 40, in list
+    page = self.paginate_queryset(queryset)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\generics.py", line 171, in paginate_queryset
+    return self.paginator.paginate_queryset(queryset, self.request, view=self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\pagination.py", line 204, in paginate_queryset
+    self.page = paginator.page(page_number)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\paginator.py", line 75, in page
+    number = self.validate_number(number)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\paginator.py", line 53, in validate_number
+    if number > self.num_pages:
+                ^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\utils\functional.py", line 49, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\paginator.py", line 102, in num_pages
+    if self.count == 0 and not self.allow_empty_first_page:
+       ^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\utils\functional.py", line 49, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\paginator.py", line 96, in count
+    return c()
+           ^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\query.py", line 470, in count
+    return self.query.get_count(using=self.db)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\sql\query.py", line 552, in get_count
+    number = obj.get_aggregation(using, ["__count"])["__count"]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\sql\query.py", line 537, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\sql\compiler.py", line 1361, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+django.db.utils.ProgrammingError: (1146, "Table 'cibil_checkerr.main_app_loan' doesn't exist")
+ERROR 2025-06-22 21:29:30,834 basehttp 22264 34316 "GET /loans/ HTTP/1.1" 500 222289
+INFO 2025-06-22 21:30:09,020 autoreload 22264 22500 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\models.py changed, reloading.
+INFO 2025-06-22 21:30:10,565 autoreload 19032 15608 Watching for file changes with StatReloader
+INFO 2025-06-22 21:30:12,509 autoreload 19032 15608 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\models.py changed, reloading.
+INFO 2025-06-22 21:30:13,588 autoreload 4328 25832 Watching for file changes with StatReloader
+INFO 2025-06-22 21:30:30,502 autoreload 12672 31272 Watching for file changes with StatReloader
+ERROR 2025-06-22 21:30:38,748 log 12672 13956 Internal Server Error: /loans/
+Traceback (most recent call last):
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\views\decorators\csrf.py", line 55, in wrapped_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\views\generic\base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\generics.py", line 239, in get
+    return self.list(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\mixins.py", line 40, in list
+    page = self.paginate_queryset(queryset)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\generics.py", line 171, in paginate_queryset
+    return self.paginator.paginate_queryset(queryset, self.request, view=self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\pagination.py", line 216, in paginate_queryset
+    return list(self.page)
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\paginator.py", line 177, in __len__
+    return len(self.object_list)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\query.py", line 302, in __len__
+    self._fetch_all()
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\query.py", line 1507, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\query.py", line 87, in __iter__
+    for row in compiler.results_iter(results):
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\sql\compiler.py", line 1299, in apply_converters
+    value = converter(value, expression, connection)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\mysql\operations.py", line 335, in convert_uuidfield_value
+    value = uuid.UUID(value)
+            ^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\AppData\Local\Programs\Python\Python311\Lib\uuid.py", line 178, in __init__
+    raise ValueError('badly formed hexadecimal UUID string')
+ValueError: badly formed hexadecimal UUID string
+ERROR 2025-06-22 21:30:38,755 basehttp 12672 13956 "GET /loans/ HTTP/1.1" 500 150999
+INFO 2025-06-22 21:34:28,107 autoreload 12672 31272 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\models.py changed, reloading.
+INFO 2025-06-22 21:34:29,394 autoreload 8424 34312 Watching for file changes with StatReloader
+INFO 2025-06-22 21:34:31,904 autoreload 8424 34312 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\models.py changed, reloading.
+INFO 2025-06-22 21:34:33,168 autoreload 2940 30928 Watching for file changes with StatReloader
+INFO 2025-06-22 21:37:38,197 autoreload 2940 30928 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\models.py changed, reloading.
+INFO 2025-06-22 21:37:39,590 autoreload 25200 20712 Watching for file changes with StatReloader
+INFO 2025-06-22 21:37:42,224 autoreload 25200 20712 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\models.py changed, reloading.
+INFO 2025-06-22 21:37:43,241 autoreload 34476 16436 Watching for file changes with StatReloader
+INFO 2025-06-22 21:40:51,076 autoreload 33448 23384 Watching for file changes with StatReloader
+WARNING 2025-06-22 21:40:57,385 log 33448 30856 Not Found: /
+WARNING 2025-06-22 21:40:57,387 basehttp 33448 30856 "GET / HTTP/1.1" 404 4890
+WARNING 2025-06-22 21:41:41,197 log 33448 30692 Bad Request: /loans/
+WARNING 2025-06-22 21:41:41,199 basehttp 33448 30692 "POST /loans/ HTTP/1.1" 400 532
+INFO 2025-06-22 21:41:45,111 basehttp 33448 30692 "GET /loans/ HTTP/1.1" 200 467
+WARNING 2025-06-22 21:42:14,301 log 33448 30692 Not Found: /credit_cards/
+WARNING 2025-06-22 21:42:14,302 basehttp 33448 30692 "GET /credit_cards/ HTTP/1.1" 404 4947
+ERROR 2025-06-22 21:42:29,645 log 33448 30692 Internal Server Error: /credit-cards/
+Traceback (most recent call last):
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+MySQLdb.ProgrammingError: (1146, "Table 'cibil_checkerr.main_app_creditcard' doesn't exist")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\views\decorators\csrf.py", line 55, in wrapped_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\views\generic\base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\generics.py", line 239, in get
+    return self.list(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\mixins.py", line 40, in list
+    page = self.paginate_queryset(queryset)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\generics.py", line 171, in paginate_queryset
+    return self.paginator.paginate_queryset(queryset, self.request, view=self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\pagination.py", line 204, in paginate_queryset
+    self.page = paginator.page(page_number)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\paginator.py", line 75, in page
+    number = self.validate_number(number)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\paginator.py", line 53, in validate_number
+    if number > self.num_pages:
+                ^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\utils\functional.py", line 49, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\paginator.py", line 102, in num_pages
+    if self.count == 0 and not self.allow_empty_first_page:
+       ^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\utils\functional.py", line 49, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\paginator.py", line 96, in count
+    return c()
+           ^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\query.py", line 470, in count
+    return self.query.get_count(using=self.db)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\sql\query.py", line 552, in get_count
+    number = obj.get_aggregation(using, ["__count"])["__count"]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\sql\query.py", line 537, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\sql\compiler.py", line 1361, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+django.db.utils.ProgrammingError: (1146, "Table 'cibil_checkerr.main_app_creditcard' doesn't exist")
+ERROR 2025-06-22 21:42:29,662 basehttp 33448 30692 "GET /credit-cards/ HTTP/1.1" 500 221205
+ERROR 2025-06-22 21:43:25,551 log 33448 30692 Internal Server Error: /bank-accounts/
+Traceback (most recent call last):
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+MySQLdb.ProgrammingError: (1146, "Table 'cibil_checkerr.main_app_bankaccount' doesn't exist")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\views\decorators\csrf.py", line 55, in wrapped_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\views\generic\base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\generics.py", line 239, in get
+    return self.list(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\mixins.py", line 40, in list
+    page = self.paginate_queryset(queryset)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\generics.py", line 171, in paginate_queryset
+    return self.paginator.paginate_queryset(queryset, self.request, view=self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\pagination.py", line 204, in paginate_queryset
+    self.page = paginator.page(page_number)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\paginator.py", line 75, in page
+    number = self.validate_number(number)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\paginator.py", line 53, in validate_number
+    if number > self.num_pages:
+                ^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\utils\functional.py", line 49, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\paginator.py", line 102, in num_pages
+    if self.count == 0 and not self.allow_empty_first_page:
+       ^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\utils\functional.py", line 49, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\paginator.py", line 96, in count
+    return c()
+           ^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\query.py", line 470, in count
+    return self.query.get_count(using=self.db)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\sql\query.py", line 552, in get_count
+    number = obj.get_aggregation(using, ["__count"])["__count"]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\sql\query.py", line 537, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\sql\compiler.py", line 1361, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+django.db.utils.ProgrammingError: (1146, "Table 'cibil_checkerr.main_app_bankaccount' doesn't exist")
+ERROR 2025-06-22 21:43:25,566 basehttp 33448 30692 "GET /bank-accounts/ HTTP/1.1" 500 221268
+INFO 2025-06-22 21:44:48,158 autoreload 33448 23384 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\models.py changed, reloading.
+INFO 2025-06-22 21:44:49,345 autoreload 27460 33956 Watching for file changes with StatReloader
+INFO 2025-06-22 21:44:57,678 autoreload 27460 33956 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\models.py changed, reloading.
+INFO 2025-06-22 21:44:58,930 autoreload 5056 5856 Watching for file changes with StatReloader
+INFO 2025-06-22 21:45:02,953 autoreload 5056 5856 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\models.py changed, reloading.
+INFO 2025-06-22 21:45:04,149 autoreload 31288 32204 Watching for file changes with StatReloader
+ERROR 2025-06-22 21:45:05,766 log 31288 10936 Internal Server Error: /bank-accounts/
+Traceback (most recent call last):
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+MySQLdb.ProgrammingError: (1146, "Table 'cibil_checkerr.main_app_bank_accounts' doesn't exist")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\views\decorators\csrf.py", line 55, in wrapped_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\views\generic\base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\generics.py", line 239, in get
+    return self.list(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\mixins.py", line 40, in list
+    page = self.paginate_queryset(queryset)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\generics.py", line 171, in paginate_queryset
+    return self.paginator.paginate_queryset(queryset, self.request, view=self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\pagination.py", line 204, in paginate_queryset
+    self.page = paginator.page(page_number)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\paginator.py", line 75, in page
+    number = self.validate_number(number)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\paginator.py", line 53, in validate_number
+    if number > self.num_pages:
+                ^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\utils\functional.py", line 49, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\paginator.py", line 102, in num_pages
+    if self.count == 0 and not self.allow_empty_first_page:
+       ^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\utils\functional.py", line 49, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\paginator.py", line 96, in count
+    return c()
+           ^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\query.py", line 470, in count
+    return self.query.get_count(using=self.db)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\sql\query.py", line 552, in get_count
+    number = obj.get_aggregation(using, ["__count"])["__count"]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\sql\query.py", line 537, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\sql\compiler.py", line 1361, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+django.db.utils.ProgrammingError: (1146, "Table 'cibil_checkerr.main_app_bank_accounts' doesn't exist")
+ERROR 2025-06-22 21:45:05,782 basehttp 31288 10936 "GET /bank-accounts/ HTTP/1.1" 500 221332
+ERROR 2025-06-22 21:45:07,126 log 31288 10936 Internal Server Error: /bank-accounts/
+Traceback (most recent call last):
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+MySQLdb.ProgrammingError: (1146, "Table 'cibil_checkerr.main_app_bank_accounts' doesn't exist")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\views\decorators\csrf.py", line 55, in wrapped_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\views\generic\base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\generics.py", line 239, in get
+    return self.list(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\mixins.py", line 40, in list
+    page = self.paginate_queryset(queryset)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\generics.py", line 171, in paginate_queryset
+    return self.paginator.paginate_queryset(queryset, self.request, view=self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\pagination.py", line 204, in paginate_queryset
+    self.page = paginator.page(page_number)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\paginator.py", line 75, in page
+    number = self.validate_number(number)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\paginator.py", line 53, in validate_number
+    if number > self.num_pages:
+                ^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\utils\functional.py", line 49, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\paginator.py", line 102, in num_pages
+    if self.count == 0 and not self.allow_empty_first_page:
+       ^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\utils\functional.py", line 49, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\paginator.py", line 96, in count
+    return c()
+           ^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\query.py", line 470, in count
+    return self.query.get_count(using=self.db)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\sql\query.py", line 552, in get_count
+    number = obj.get_aggregation(using, ["__count"])["__count"]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\sql\query.py", line 537, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\sql\compiler.py", line 1361, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+django.db.utils.ProgrammingError: (1146, "Table 'cibil_checkerr.main_app_bank_accounts' doesn't exist")
+ERROR 2025-06-22 21:45:07,131 basehttp 31288 10936 "GET /bank-accounts/ HTTP/1.1" 500 221332
+INFO 2025-06-22 21:45:29,130 autoreload 19860 13928 Watching for file changes with StatReloader
+ERROR 2025-06-22 21:45:32,653 log 19860 34432 Internal Server Error: /bank-accounts/
+Traceback (most recent call last):
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+MySQLdb.ProgrammingError: (1146, "Table 'cibil_checkerr.main_app_bank_accounts' doesn't exist")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\views\decorators\csrf.py", line 55, in wrapped_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\views\generic\base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\generics.py", line 239, in get
+    return self.list(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\mixins.py", line 40, in list
+    page = self.paginate_queryset(queryset)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\generics.py", line 171, in paginate_queryset
+    return self.paginator.paginate_queryset(queryset, self.request, view=self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\pagination.py", line 204, in paginate_queryset
+    self.page = paginator.page(page_number)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\paginator.py", line 75, in page
+    number = self.validate_number(number)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\paginator.py", line 53, in validate_number
+    if number > self.num_pages:
+                ^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\utils\functional.py", line 49, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\paginator.py", line 102, in num_pages
+    if self.count == 0 and not self.allow_empty_first_page:
+       ^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\utils\functional.py", line 49, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\paginator.py", line 96, in count
+    return c()
+           ^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\query.py", line 470, in count
+    return self.query.get_count(using=self.db)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\sql\query.py", line 552, in get_count
+    number = obj.get_aggregation(using, ["__count"])["__count"]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\sql\query.py", line 537, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\sql\compiler.py", line 1361, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+django.db.utils.ProgrammingError: (1146, "Table 'cibil_checkerr.main_app_bank_accounts' doesn't exist")
+ERROR 2025-06-22 21:45:32,666 basehttp 19860 34432 "GET /bank-accounts/ HTTP/1.1" 500 221332
+INFO 2025-06-22 21:47:06,481 autoreload 19860 13928 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\models.py changed, reloading.
+INFO 2025-06-22 21:47:07,657 autoreload 34632 4216 Watching for file changes with StatReloader
+INFO 2025-06-22 21:47:10,559 basehttp 34632 17560 "GET /bank-accounts/ HTTP/1.1" 200 376
+INFO 2025-06-22 21:47:20,709 autoreload 34632 4216 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\models.py changed, reloading.
+INFO 2025-06-22 21:47:21,936 autoreload 7124 26084 Watching for file changes with StatReloader
+INFO 2025-06-22 21:47:29,165 autoreload 7124 26084 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\models.py changed, reloading.
+INFO 2025-06-22 21:47:30,228 autoreload 21576 15184 Watching for file changes with StatReloader
+INFO 2025-06-22 21:47:32,219 autoreload 21576 15184 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\models.py changed, reloading.
+INFO 2025-06-22 21:47:33,363 autoreload 17020 14448 Watching for file changes with StatReloader
+INFO 2025-06-22 21:47:34,952 basehttp 17020 33304 "GET /bank-accounts/ HTTP/1.1" 200 376
+INFO 2025-06-22 21:47:44,012 basehttp 17020 33304 "GET /credit-cards/ HTTP/1.1" 200 418
+INFO 2025-06-22 21:47:57,078 autoreload 17020 14448 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\models.py changed, reloading.
+INFO 2025-06-22 21:47:58,323 autoreload 28116 21472 Watching for file changes with StatReloader
+INFO 2025-06-22 21:48:05,564 autoreload 28116 21472 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\models.py changed, reloading.
+INFO 2025-06-22 21:48:06,705 autoreload 26608 34692 Watching for file changes with StatReloader
+INFO 2025-06-22 21:48:10,623 autoreload 26608 34692 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\models.py changed, reloading.
+INFO 2025-06-22 21:48:11,903 autoreload 32316 34368 Watching for file changes with StatReloader
+INFO 2025-06-22 21:48:16,958 autoreload 32316 34368 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\models.py changed, reloading.
+INFO 2025-06-22 21:48:18,311 autoreload 1692 29512 Watching for file changes with StatReloader
+INFO 2025-06-22 21:48:53,629 autoreload 1692 29512 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\models.py changed, reloading.
+INFO 2025-06-22 21:48:54,717 autoreload 3280 26348 Watching for file changes with StatReloader
+INFO 2025-06-22 21:48:56,558 autoreload 3280 26348 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\models.py changed, reloading.
+INFO 2025-06-22 21:48:57,962 autoreload 9872 31192 Watching for file changes with StatReloader
+INFO 2025-06-22 21:49:13,855 autoreload 9872 31192 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\models.py changed, reloading.
+INFO 2025-06-22 21:49:14,908 autoreload 33904 34356 Watching for file changes with StatReloader
+INFO 2025-06-22 21:49:19,940 autoreload 33904 34356 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\models.py changed, reloading.
+INFO 2025-06-22 21:49:21,144 autoreload 31196 30944 Watching for file changes with StatReloader
+INFO 2025-06-22 21:49:29,546 basehttp 31196 31592 "GET /customers/ HTTP/1.1" 200 1986
+WARNING 2025-06-22 21:51:57,695 log 31196 33756 Not Found: /check-cibil-/score
+WARNING 2025-06-22 21:51:57,697 basehttp 31196 33756 "GET /check-cibil-/score HTTP/1.1" 404 4962
+WARNING 2025-06-22 21:52:06,080 log 31196 33756 Method Not Allowed: /check-cibil-score/
+WARNING 2025-06-22 21:52:06,082 basehttp 31196 33756 "GET /check-cibil-score/ HTTP/1.1" 405 40
+INFO 2025-06-22 21:52:10,691 basehttp 31196 33756 "POST /check-cibil-score/ HTTP/1.1" 200 3889
+INFO 2025-06-23 08:38:44,382 autoreload 2708 24884 Watching for file changes with StatReloader
+ERROR 2025-06-23 08:38:48,841 log 2708 27988 Internal Server Error: /check-cibil-score/
+ERROR 2025-06-23 08:38:48,843 basehttp 2708 27988 "POST /check-cibil-score/ HTTP/1.1" 500 187
+ERROR 2025-06-23 08:39:42,486 log 2708 27988 Internal Server Error: /check-cibil-score/
+ERROR 2025-06-23 08:39:42,487 basehttp 2708 27988 "POST /check-cibil-score/ HTTP/1.1" 500 187
+ERROR 2025-06-23 08:42:00,243 log 2708 22140 Internal Server Error: /check-cibil-score/
+ERROR 2025-06-23 08:42:00,244 basehttp 2708 22140 "POST /check-cibil-score/ HTTP/1.1" 500 187
+ERROR 2025-06-23 08:42:38,610 log 2708 22140 Internal Server Error: /check-cibil-score/
+ERROR 2025-06-23 08:42:38,611 basehttp 2708 22140 "POST /check-cibil-score/ HTTP/1.1" 500 187
+WARNING 2025-06-23 08:50:35,446 log 2708 34016 Not Found: /
+WARNING 2025-06-23 08:50:35,454 basehttp 2708 34016 "GET / HTTP/1.1" 404 4890
+WARNING 2025-06-23 08:50:35,789 log 2708 34016 Not Found: /favicon.ico
+WARNING 2025-06-23 08:50:35,793 basehttp 2708 34016 "GET /favicon.ico HTTP/1.1" 404 4941
+INFO 2025-06-23 08:58:36,963 autoreload 32280 20288 Watching for file changes with StatReloader
+ERROR 2025-06-23 08:58:52,566 log 32280 22036 Internal Server Error: /check-cibil-score/
+ERROR 2025-06-23 08:58:52,569 basehttp 32280 22036 "POST /check-cibil-score/ HTTP/1.1" 500 187
+INFO 2025-06-23 09:01:43,561 autoreload 32280 20288 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\views.py changed, reloading.
+INFO 2025-06-23 09:01:45,728 autoreload 24312 31168 Watching for file changes with StatReloader
+INFO 2025-06-23 09:01:54,549 autoreload 24312 31168 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\views.py changed, reloading.
+INFO 2025-06-23 09:01:55,955 autoreload 27836 21944 Watching for file changes with StatReloader
+INFO 2025-06-23 09:02:40,614 autoreload 27836 21944 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\views.py changed, reloading.
+INFO 2025-06-23 09:02:42,358 autoreload 25296 25124 Watching for file changes with StatReloader
+INFO 2025-06-23 09:02:46,358 autoreload 25296 25124 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\views.py changed, reloading.
+INFO 2025-06-23 09:02:48,056 autoreload 25044 15720 Watching for file changes with StatReloader
+INFO 2025-06-23 09:03:36,729 autoreload 25044 15720 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\views.py changed, reloading.
+INFO 2025-06-23 09:03:38,256 autoreload 13444 14724 Watching for file changes with StatReloader
+ERROR 2025-06-23 09:03:43,741 log 13444 22184 Internal Server Error: /check-cibil-score/
+ERROR 2025-06-23 09:03:43,742 basehttp 13444 22184 "POST /check-cibil-score/ HTTP/1.1" 500 187
+ERROR 2025-06-23 09:03:51,332 log 13444 22184 Internal Server Error: /check-cibil-score/
+ERROR 2025-06-23 09:03:51,333 basehttp 13444 22184 "POST /check-cibil-score/ HTTP/1.1" 500 187
+INFO 2025-06-23 09:06:03,667 autoreload 13444 14724 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\cibil_calculator.py changed, reloading.
+INFO 2025-06-23 09:06:05,307 autoreload 4292 30764 Watching for file changes with StatReloader
+INFO 2025-06-23 09:06:16,693 autoreload 4292 30764 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\cibil_calculator.py changed, reloading.
+INFO 2025-06-23 09:06:17,941 autoreload 16660 13828 Watching for file changes with StatReloader
+INFO 2025-06-23 09:06:27,832 autoreload 16660 13828 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\views.py changed, reloading.
+INFO 2025-06-23 09:06:29,219 autoreload 7424 31464 Watching for file changes with StatReloader
+INFO 2025-06-23 09:06:34,016 autoreload 7424 31464 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\views.py changed, reloading.
+INFO 2025-06-23 09:06:35,502 autoreload 12720 29404 Watching for file changes with StatReloader
+INFO 2025-06-23 09:07:04,738 autoreload 12720 29404 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\cibil_calculator.py changed, reloading.
+INFO 2025-06-23 09:07:06,097 autoreload 6196 25496 Watching for file changes with StatReloader
+INFO 2025-06-23 09:07:15,341 autoreload 6196 25496 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\cibil_calculator.py changed, reloading.
+INFO 2025-06-23 09:07:16,438 autoreload 9752 31456 Watching for file changes with StatReloader
+INFO 2025-06-23 09:07:22,434 autoreload 9752 31456 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\cibil_calculator.py changed, reloading.
+INFO 2025-06-23 09:07:23,813 autoreload 7376 33864 Watching for file changes with StatReloader
+INFO 2025-06-23 09:07:39,686 autoreload 7376 33864 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\cibil_calculator.py changed, reloading.
+INFO 2025-06-23 09:07:40,902 autoreload 34584 32956 Watching for file changes with StatReloader
+INFO 2025-06-23 09:07:45,153 autoreload 34584 32956 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\cibil_calculator.py changed, reloading.
+INFO 2025-06-23 09:07:46,521 autoreload 34328 31528 Watching for file changes with StatReloader
+INFO 2025-06-23 09:08:08,537 autoreload 34328 31528 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\views.py changed, reloading.
+INFO 2025-06-23 09:08:10,131 autoreload 10676 31996 Watching for file changes with StatReloader
+ERROR 2025-06-23 09:08:14,136 log 10676 23708 Internal Server Error: /check-cibil-score/
+ERROR 2025-06-23 09:08:14,137 basehttp 10676 23708 "POST /check-cibil-score/ HTTP/1.1" 500 136
+INFO 2025-06-23 09:10:02,820 autoreload 10676 31996 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\cibil_calculator.py changed, reloading.
+INFO 2025-06-23 09:10:04,290 autoreload 5672 28252 Watching for file changes with StatReloader
+INFO 2025-06-23 09:10:11,260 autoreload 5672 28252 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\cibil_calculator.py changed, reloading.
+INFO 2025-06-23 09:10:12,413 autoreload 12988 20072 Watching for file changes with StatReloader
+ERROR 2025-06-23 09:10:18,231 log 12988 14736 Internal Server Error: /check-cibil-score/
+ERROR 2025-06-23 09:10:18,232 basehttp 12988 14736 "POST /check-cibil-score/ HTTP/1.1" 500 187
+INFO 2025-06-23 09:11:20,969 autoreload 12988 20072 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\cibil_calculator.py changed, reloading.
+INFO 2025-06-23 09:11:22,651 autoreload 34312 17092 Watching for file changes with StatReloader
+INFO 2025-06-23 09:11:32,808 autoreload 34312 17092 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\cibil_calculator.py changed, reloading.
+INFO 2025-06-23 09:11:34,339 autoreload 12124 14396 Watching for file changes with StatReloader
+INFO 2025-06-23 09:11:42,699 autoreload 12124 14396 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\cibil_calculator.py changed, reloading.
+INFO 2025-06-23 09:11:44,388 autoreload 31992 14748 Watching for file changes with StatReloader
+INFO 2025-06-23 09:11:46,216 autoreload 31992 14748 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\cibil_calculator.py changed, reloading.
+INFO 2025-06-23 09:11:47,799 autoreload 12692 20864 Watching for file changes with StatReloader
+INFO 2025-06-23 09:11:59,572 autoreload 12692 20864 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\cibil_calculator.py changed, reloading.
+INFO 2025-06-23 09:12:01,030 autoreload 7664 26448 Watching for file changes with StatReloader
+INFO 2025-06-23 09:12:04,979 autoreload 7664 26448 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\cibil_calculator.py changed, reloading.
+INFO 2025-06-23 09:12:06,359 autoreload 11952 12216 Watching for file changes with StatReloader
+INFO 2025-06-23 09:12:14,678 autoreload 11952 12216 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\cibil_calculator.py changed, reloading.
+INFO 2025-06-23 09:12:16,004 autoreload 21348 34172 Watching for file changes with StatReloader
+INFO 2025-06-23 09:12:17,898 autoreload 21348 34172 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\cibil_calculator.py changed, reloading.
+INFO 2025-06-23 09:12:19,445 autoreload 21080 34120 Watching for file changes with StatReloader
+ERROR 2025-06-23 09:12:21,426 log 21080 25932 Internal Server Error: /check-cibil-score/
+ERROR 2025-06-23 09:12:21,428 basehttp 21080 25932 "POST /check-cibil-score/ HTTP/1.1" 500 187
+ERROR 2025-06-23 09:12:23,578 log 21080 25932 Internal Server Error: /check-cibil-score/
+ERROR 2025-06-23 09:12:23,578 basehttp 21080 25932 "POST /check-cibil-score/ HTTP/1.1" 500 187
+ERROR 2025-06-23 09:12:51,443 log 21080 25932 Internal Server Error: /check-cibil-score/
+ERROR 2025-06-23 09:12:51,444 basehttp 21080 25932 "POST /check-cibil-score/ HTTP/1.1" 500 187
+INFO 2025-06-23 09:28:54,868 autoreload 28224 28524 Watching for file changes with StatReloader
+INFO 2025-06-23 09:36:33,771 autoreload 25884 24956 Watching for file changes with StatReloader
+ERROR 2025-06-23 09:36:36,552 log 25884 34480 Internal Server Error: /check-cibil-score/
+Traceback (most recent call last):
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+MySQLdb.OperationalError: (1054, "Unknown column 'customers.id' in 'field list'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\views\decorators\csrf.py", line 55, in wrapped_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\views\generic\base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\views.py", line 115, in check_cibil_score
+    customer = get_object_or_404(Customer, pan_card_number=pan_card_number)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\shortcuts.py", line 85, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\query.py", line 492, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\query.py", line 302, in __len__
+    self._fetch_all()
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\query.py", line 1507, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\query.py", line 57, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\sql\compiler.py", line 1361, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+django.db.utils.OperationalError: (1054, "Unknown column 'customers.id' in 'field list'")
+ERROR 2025-06-23 09:36:36,568 basehttp 25884 34480 "POST /check-cibil-score/ HTTP/1.1" 500 202596
+ERROR 2025-06-23 09:36:39,303 log 25884 34480 Internal Server Error: /check-cibil-score/
+Traceback (most recent call last):
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+MySQLdb.OperationalError: (1054, "Unknown column 'customers.id' in 'field list'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\views\decorators\csrf.py", line 55, in wrapped_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\views\generic\base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\views.py", line 115, in check_cibil_score
+    customer = get_object_or_404(Customer, pan_card_number=pan_card_number)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\shortcuts.py", line 85, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\query.py", line 492, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\query.py", line 302, in __len__
+    self._fetch_all()
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\query.py", line 1507, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\query.py", line 57, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\sql\compiler.py", line 1361, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+django.db.utils.OperationalError: (1054, "Unknown column 'customers.id' in 'field list'")
+ERROR 2025-06-23 09:36:39,309 basehttp 25884 34480 "POST /check-cibil-score/ HTTP/1.1" 500 202596
+ERROR 2025-06-23 09:37:36,483 log 25884 34480 Internal Server Error: /check-cibil-score/
+Traceback (most recent call last):
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+MySQLdb.OperationalError: (1054, "Unknown column 'customers.id' in 'field list'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\views\decorators\csrf.py", line 55, in wrapped_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\views\generic\base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\views.py", line 115, in check_cibil_score
+    customer = get_object_or_404(Customer, pan_card_number=pan_card_number)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\shortcuts.py", line 85, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\query.py", line 492, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\query.py", line 302, in __len__
+    self._fetch_all()
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\query.py", line 1507, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\query.py", line 57, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\sql\compiler.py", line 1361, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+django.db.utils.OperationalError: (1054, "Unknown column 'customers.id' in 'field list'")
+ERROR 2025-06-23 09:37:36,496 basehttp 25884 34480 "POST /check-cibil-score/ HTTP/1.1" 500 202596
+INFO 2025-06-23 09:38:24,583 autoreload 25884 24956 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\models.py changed, reloading.
+INFO 2025-06-23 09:38:25,972 autoreload 7424 33668 Watching for file changes with StatReloader
+INFO 2025-06-23 09:40:43,894 autoreload 16796 21348 Watching for file changes with StatReloader
+ERROR 2025-06-23 09:40:56,096 log 16796 30184 Internal Server Error: /check-cibil-score/
+Traceback (most recent call last):
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+MySQLdb.ProgrammingError: (1146, "Table 'cibil.customers' doesn't exist")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\views\decorators\csrf.py", line 55, in wrapped_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\views\generic\base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\views.py", line 115, in check_cibil_score
+    customer = get_object_or_404(Customer, pan_card_number=pan_card_number)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\shortcuts.py", line 85, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\query.py", line 492, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\query.py", line 302, in __len__
+    self._fetch_all()
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\query.py", line 1507, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\query.py", line 57, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\sql\compiler.py", line 1361, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+django.db.utils.ProgrammingError: (1146, "Table 'cibil.customers' doesn't exist")
+ERROR 2025-06-23 09:40:56,123 basehttp 16796 30184 "POST /check-cibil-score/ HTTP/1.1" 500 202388
+INFO 2025-06-23 09:41:43,072 autoreload 34288 3748 Watching for file changes with StatReloader
+INFO 2025-06-23 09:43:53,053 autoreload 22536 20784 Watching for file changes with StatReloader
+WARNING 2025-06-23 09:43:55,625 log 22536 22320 Not Found: /
+WARNING 2025-06-23 09:43:55,626 basehttp 22536 22320 "GET / HTTP/1.1" 404 4890
+ERROR 2025-06-23 09:44:08,783 log 22536 22320 Internal Server Error: /loans/
+Traceback (most recent call last):
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+MySQLdb.ProgrammingError: (1146, "Table 'cibil.loans' doesn't exist")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\views\decorators\csrf.py", line 55, in wrapped_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\views\generic\base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\generics.py", line 239, in get
+    return self.list(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\mixins.py", line 40, in list
+    page = self.paginate_queryset(queryset)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\generics.py", line 171, in paginate_queryset
+    return self.paginator.paginate_queryset(queryset, self.request, view=self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\pagination.py", line 204, in paginate_queryset
+    self.page = paginator.page(page_number)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\paginator.py", line 75, in page
+    number = self.validate_number(number)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\paginator.py", line 53, in validate_number
+    if number > self.num_pages:
+                ^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\utils\functional.py", line 49, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\paginator.py", line 102, in num_pages
+    if self.count == 0 and not self.allow_empty_first_page:
+       ^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\utils\functional.py", line 49, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\paginator.py", line 96, in count
+    return c()
+           ^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\query.py", line 470, in count
+    return self.query.get_count(using=self.db)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\sql\query.py", line 552, in get_count
+    number = obj.get_aggregation(using, ["__count"])["__count"]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\sql\query.py", line 537, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\sql\compiler.py", line 1361, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+django.db.utils.ProgrammingError: (1146, "Table 'cibil.loans' doesn't exist")
+ERROR 2025-06-23 09:44:08,801 basehttp 22536 22320 "GET /loans/ HTTP/1.1" 500 222818
+INFO 2025-06-23 09:45:57,327 autoreload 16832 30208 Watching for file changes with StatReloader
+ERROR 2025-06-23 09:46:01,638 log 16832 26388 Internal Server Error: /check-cibil-score/
+Traceback (most recent call last):
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+MySQLdb.ProgrammingError: (1146, "Table 'cibil.customers' doesn't exist")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\views\decorators\csrf.py", line 55, in wrapped_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\views\generic\base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\rest_framework\decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\views.py", line 115, in check_cibil_score
+    customer = get_object_or_404(Customer, pan_card_number=pan_card_number)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\shortcuts.py", line 85, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\query.py", line 492, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\query.py", line 302, in __len__
+    self._fetch_all()
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\query.py", line 1507, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\query.py", line 57, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\models\sql\compiler.py", line 1361, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\env\Lib\site-packages\MySQLdb\connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+django.db.utils.ProgrammingError: (1146, "Table 'cibil.customers' doesn't exist")
+ERROR 2025-06-23 09:46:01,650 basehttp 16832 26388 "POST /check-cibil-score/ HTTP/1.1" 500 202388
+INFO 2025-06-23 09:58:05,235 autoreload 18528 23900 Watching for file changes with StatReloader
+INFO 2025-06-23 09:58:08,192 basehttp 18528 1600 "POST /check-cibil-score/ HTTP/1.1" 200 3889
+INFO 2025-06-23 09:58:45,185 basehttp 18528 1600 "POST /check-cibil-score/ HTTP/1.1" 200 3889
+INFO 2025-06-23 10:01:50,661 autoreload 18528 23900 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\cibil_calculator.py changed, reloading.
+INFO 2025-06-23 10:01:51,693 autoreload 29112 32716 Watching for file changes with StatReloader
+INFO 2025-06-23 10:02:07,350 autoreload 29112 32716 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\cibil_calculator.py changed, reloading.
+INFO 2025-06-23 10:02:08,279 autoreload 17116 31812 Watching for file changes with StatReloader
+INFO 2025-06-23 11:12:19,696 basehttp 17116 3960 "POST /check-cibil-score/ HTTP/1.1" 200 3889
+INFO 2025-06-23 11:29:24,297 autoreload 34472 28244 Watching for file changes with StatReloader
+INFO 2025-06-23 11:29:28,657 basehttp 34472 35596 "POST /check-cibil-score/ HTTP/1.1" 200 3889
+INFO 2025-06-24 08:47:10,027 autoreload 13680 22088 Watching for file changes with StatReloader
+INFO 2025-06-24 08:47:17,775 basehttp 13680 28252 "POST /check-cibil-score/ HTTP/1.1" 200 3889
+INFO 2025-06-24 10:50:11,206 autoreload 13680 22088 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\cibil_calculator.py changed, reloading.
+INFO 2025-06-24 10:50:13,272 autoreload 33860 24868 Watching for file changes with StatReloader
+INFO 2025-06-24 10:50:18,412 autoreload 33860 24868 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\cibil_calculator.py changed, reloading.
+INFO 2025-06-24 10:50:19,595 autoreload 23692 30068 Watching for file changes with StatReloader
+INFO 2025-06-25 19:27:38,893 autoreload 32660 22400 Watching for file changes with StatReloader
+INFO 2025-06-25 19:33:45,723 autoreload 32660 22400 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\cibil_calculator.py changed, reloading.
+INFO 2025-06-25 19:33:46,973 autoreload 14664 29092 Watching for file changes with StatReloader
+INFO 2025-06-25 19:35:22,452 autoreload 14664 29092 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\views.py changed, reloading.
+INFO 2025-06-25 19:35:23,524 autoreload 24184 29032 Watching for file changes with StatReloader
+INFO 2025-06-25 19:35:28,297 autoreload 24184 29032 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\views.py changed, reloading.
+INFO 2025-06-25 19:35:29,318 autoreload 1432 28400 Watching for file changes with StatReloader
+INFO 2025-06-25 19:35:35,181 autoreload 1432 28400 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\views.py changed, reloading.
+INFO 2025-06-25 19:35:36,193 autoreload 23312 5280 Watching for file changes with StatReloader
+ERROR 2025-06-25 19:35:52,829 log 23312 28196 Internal Server Error: /check-cibil-score/
+ERROR 2025-06-25 19:35:52,831 basehttp 23312 28196 "POST /check-cibil-score/ HTTP/1.1" 500 151
+ERROR 2025-06-25 19:36:10,588 log 23312 28196 Internal Server Error: /check-cibil-score/
+ERROR 2025-06-25 19:36:10,590 basehttp 23312 28196 "POST /check-cibil-score/ HTTP/1.1" 500 151
+INFO 2025-06-25 19:37:00,860 autoreload 23312 5280 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\cibil_calculator.py changed, reloading.
+INFO 2025-06-25 19:37:02,033 autoreload 3316 2968 Watching for file changes with StatReloader
+INFO 2025-06-25 19:38:27,466 autoreload 3316 2968 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\cibil_calculator.py changed, reloading.
+INFO 2025-06-25 19:38:28,729 autoreload 30588 14492 Watching for file changes with StatReloader
+INFO 2025-06-25 19:38:42,199 autoreload 30588 14492 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\views.py changed, reloading.
+INFO 2025-06-25 19:38:43,202 autoreload 26236 25136 Watching for file changes with StatReloader
+INFO 2025-06-25 19:38:46,504 basehttp 26236 25976 "POST /check-cibil-score/ HTTP/1.1" 200 3889
+INFO 2025-06-25 19:47:38,964 autoreload 26236 25136 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\cibil_calculator.py changed, reloading.
+INFO 2025-06-25 19:47:40,266 autoreload 10476 32460 Watching for file changes with StatReloader
+INFO 2025-06-25 19:48:09,145 autoreload 10476 32460 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\views.py changed, reloading.
+INFO 2025-06-25 19:48:10,181 autoreload 2484 7736 Watching for file changes with StatReloader
+INFO 2025-06-25 19:48:25,775 autoreload 2484 7736 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\views.py changed, reloading.
+INFO 2025-06-25 19:48:26,835 autoreload 17888 28104 Watching for file changes with StatReloader
+INFO 2025-06-25 19:48:47,760 autoreload 17888 28104 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\views.py changed, reloading.
+INFO 2025-06-25 19:48:48,726 autoreload 31652 24220 Watching for file changes with StatReloader
+INFO 2025-06-25 19:49:10,700 autoreload 31652 24220 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\views.py changed, reloading.
+INFO 2025-06-25 19:49:11,659 autoreload 28936 10576 Watching for file changes with StatReloader
+INFO 2025-06-25 19:49:23,088 autoreload 28936 10576 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\views.py changed, reloading.
+INFO 2025-06-25 19:49:24,218 autoreload 13700 23136 Watching for file changes with StatReloader
+INFO 2025-06-25 19:49:40,836 autoreload 13700 23136 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\views.py changed, reloading.
+INFO 2025-06-25 19:49:41,861 autoreload 7764 2268 Watching for file changes with StatReloader
+INFO 2025-06-25 19:49:44,586 autoreload 7764 2268 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\views.py changed, reloading.
+INFO 2025-06-25 19:49:45,620 autoreload 1484 6956 Watching for file changes with StatReloader
+INFO 2025-06-25 19:49:52,514 autoreload 1484 6956 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\views.py changed, reloading.
+INFO 2025-06-25 19:49:53,571 autoreload 696 12632 Watching for file changes with StatReloader
+INFO 2025-06-25 19:50:07,168 autoreload 696 12632 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\urls.py changed, reloading.
+INFO 2025-06-25 19:50:08,280 autoreload 16188 25848 Watching for file changes with StatReloader
+INFO 2025-06-25 19:50:58,004 autoreload 16188 25848 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\urls.py changed, reloading.
+INFO 2025-06-25 19:50:59,081 autoreload 18772 11952 Watching for file changes with StatReloader
+ERROR 2025-06-25 19:51:02,556 log 18772 7372 Internal Server Error: /check-dynamic-cibil-score/
+ERROR 2025-06-25 19:51:02,557 basehttp 18772 7372 "POST /check-dynamic-cibil-score/ HTTP/1.1" 500 152
+INFO 2025-06-25 19:53:28,178 autoreload 18772 11952 C:\Users\DINESH\Dropbox\PC\Desktop\studies\cibil_score_checker\score_checker\main_app\cibil_calculator.py changed, reloading.
+INFO 2025-06-25 19:53:29,394 autoreload 25268 32684 Watching for file changes with StatReloader
+INFO 2025-06-25 19:53:31,882 basehttp 25268 31080 "POST /check-dynamic-cibil-score/ HTTP/1.1" 200 2069

@@ -1,0 +1,16 @@
+Django==4.0.10
+djangorestframework==3.14.0
+
+# MySQL Database Drivers
+mysqlclient==2.2.0
+mysql-connector-python==8.2.0
+
+# API and CORS
+django-cors-headers==4.3.1
+
+# Additional useful packages
+python-decouple==3.8
+#Pillow==10.1.0
+
+# Development tools
+django-extensions==3.2.3
