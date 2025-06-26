@@ -1892,3 +1892,157 @@ ERROR 2025-06-26 16:00:13,375 log 4496 6500 Internal Server Error: /check-dynami
 ERROR 2025-06-26 16:00:13,376 basehttp 4496 6500 "POST /check-dynamic-cibil-score/ HTTP/1.1" 500 107
 INFO 2025-06-26 16:02:03,895 autoreload 4496 16264 E:\D Drive Back Up\9th sem\SOA lab\cibil_score\score_checker\settings.py changed, reloading.
 INFO 2025-06-26 16:02:04,675 autoreload 26936 20624 Watching for file changes with StatReloader
+INFO 2025-06-26 21:23:38,801 autoreload 18028 23708 Watching for file changes with StatReloader
+INFO 2025-06-26 21:24:24,906 autoreload 18028 23708 E:\D Drive Back Up\9th sem\SOA lab\cibil_score\main_app\urls.py changed, reloading.
+INFO 2025-06-26 21:24:25,648 autoreload 25932 22096 Watching for file changes with StatReloader
+INFO 2025-06-26 21:24:45,427 basehttp 25932 33444 "POST /check-dynamic-cibil-score/ HTTP/1.1" 200 2047
+INFO 2025-06-26 21:25:18,994 basehttp 25932 33444 "POST /check-dynamic-cibil-score/ HTTP/1.1" 200 2046
+ERROR 2025-06-26 21:26:16,263 log 25932 27984 Internal Server Error: /check-cibil-score/
+Traceback (most recent call last):
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\env\Lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\env\Lib\site-packages\django\views\decorators\csrf.py", line 55, in wrapped_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\env\Lib\site-packages\django\views\generic\base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\env\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\env\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\env\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\env\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\env\Lib\site-packages\rest_framework\decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\main_app\views.py", line 176, in check_cibil_score
+    return check_dynamic_cibil_score(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\env\Lib\site-packages\django\views\decorators\csrf.py", line 55, in wrapped_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\env\Lib\site-packages\django\views\generic\base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\env\Lib\site-packages\rest_framework\views.py", line 492, in dispatch
+    request = self.initialize_request(request, *args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\env\Lib\site-packages\rest_framework\views.py", line 391, in initialize_request
+    return Request(
+           ^^^^^^^^
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\env\Lib\site-packages\rest_framework\request.py", line 154, in __init__
+    assert isinstance(request, HttpRequest), (
+AssertionError: The `request` argument must be an instance of `django.http.HttpRequest`, not `rest_framework.request.Request`.
+ERROR 2025-06-26 21:26:16,270 basehttp 25932 27984 "POST /check-cibil-score/ HTTP/1.1" 500 126368
+ERROR 2025-06-26 21:26:40,349 log 25932 27984 Internal Server Error: /check-cibil-score/
+Traceback (most recent call last):
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\env\Lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\env\Lib\site-packages\django\views\decorators\csrf.py", line 55, in wrapped_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\env\Lib\site-packages\django\views\generic\base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\env\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\env\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\env\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\env\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\env\Lib\site-packages\rest_framework\decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\main_app\views.py", line 176, in check_cibil_score
+    return check_dynamic_cibil_score(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\env\Lib\site-packages\django\views\decorators\csrf.py", line 55, in wrapped_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\env\Lib\site-packages\django\views\generic\base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\env\Lib\site-packages\rest_framework\views.py", line 492, in dispatch
+    request = self.initialize_request(request, *args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\env\Lib\site-packages\rest_framework\views.py", line 391, in initialize_request
+    return Request(
+           ^^^^^^^^
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\env\Lib\site-packages\rest_framework\request.py", line 154, in __init__
+    assert isinstance(request, HttpRequest), (
+AssertionError: The `request` argument must be an instance of `django.http.HttpRequest`, not `rest_framework.request.Request`.
+ERROR 2025-06-26 21:26:40,354 basehttp 25932 27984 "POST /check-cibil-score/ HTTP/1.1" 500 126368
+ERROR 2025-06-26 21:27:01,043 log 25932 27984 Internal Server Error: /check-cibil-score/
+Traceback (most recent call last):
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\env\Lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\env\Lib\site-packages\django\views\decorators\csrf.py", line 55, in wrapped_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\env\Lib\site-packages\django\views\generic\base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\env\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\env\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\env\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\env\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\env\Lib\site-packages\rest_framework\decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\main_app\views.py", line 176, in check_cibil_score
+    return check_dynamic_cibil_score(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\env\Lib\site-packages\django\views\decorators\csrf.py", line 55, in wrapped_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\env\Lib\site-packages\django\views\generic\base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\env\Lib\site-packages\rest_framework\views.py", line 492, in dispatch
+    request = self.initialize_request(request, *args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\env\Lib\site-packages\rest_framework\views.py", line 391, in initialize_request
+    return Request(
+           ^^^^^^^^
+  File "E:\D Drive Back Up\9th sem\SOA lab\cibil_score\env\Lib\site-packages\rest_framework\request.py", line 154, in __init__
+    assert isinstance(request, HttpRequest), (
+AssertionError: The `request` argument must be an instance of `django.http.HttpRequest`, not `rest_framework.request.Request`.
+ERROR 2025-06-26 21:27:01,047 basehttp 25932 27984 "POST /check-cibil-score/ HTTP/1.1" 500 126368
+INFO 2025-06-26 21:39:29,494 autoreload 25932 22096 E:\D Drive Back Up\9th sem\SOA lab\cibil_score\main_app\views.py changed, reloading.
+INFO 2025-06-26 21:39:30,384 autoreload 31596 27440 Watching for file changes with StatReloader
+INFO 2025-06-26 21:42:07,889 autoreload 31596 27440 E:\D Drive Back Up\9th sem\SOA lab\cibil_score\main_app\urls.py changed, reloading.
+INFO 2025-06-26 21:42:08,587 autoreload 25596 18528 Watching for file changes with StatReloader
+INFO 2025-06-26 21:42:36,934 basehttp 25596 16656 "POST /check-dynamic-cibil-score/ HTTP/1.1" 200 2046
+INFO 2025-06-26 21:44:02,828 basehttp 25596 7560 "OPTIONS /check-dynamic-cibil-score/ HTTP/1.1" 200 0
+INFO 2025-06-26 21:44:02,987 basehttp 25596 7560 "POST /check-dynamic-cibil-score/ HTTP/1.1" 200 2046
+INFO 2025-06-26 21:44:28,333 basehttp 25596 7560 "POST /check-dynamic-cibil-score/ HTTP/1.1" 200 2045
+INFO 2025-06-26 22:24:42,170 autoreload 32088 20960 Watching for file changes with StatReloader
+INFO 2025-06-26 22:25:34,537 basehttp 32088 29576 "OPTIONS /check-dynamic-cibil-score/ HTTP/1.1" 200 0
+INFO 2025-06-26 22:25:34,677 basehttp 32088 29576 "POST /check-dynamic-cibil-score/ HTTP/1.1" 200 2049

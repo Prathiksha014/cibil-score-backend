@@ -8,9 +8,11 @@ router = DefaultRouter()
 
 urlpatterns = [
     # Main CIBIL score checking endpoint
-    path('api/test/', views.test_connection,name='test_connection'),
-    path('check-cibil-score/', views.check_cibil_score, name='check_cibil_score'),
-    path('check-dynamic-cibil-score/', views.check_dynamic_cibil_score, name='check_dynamic_cibil_score'),
+    #path('api/test/', views.test_connection,name='test_connection'),
+    #path('check-cibil-score/', views.check_cibil_score, name='check_cibil_score'),
+    #path('check-dynamic-cibil-score/', views.check_dynamic_cibil_score, name='check_dynamic_cibil_score'),
+    path('check-cibil-score/', views.CheckCibilScoreView.as_view(), name='check-cibil-score'),
+    path('check-dynamic-cibil-score/', views.CheckDynamicCibilScoreView.as_view(), name='check-dynamic-cibil-score'),
     
     # Customer management
     path('customers/', views.CustomerViewSet.as_view(), name='customer_list_create'),
