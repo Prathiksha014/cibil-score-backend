@@ -59,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',  # Required for admin
     'django.contrib.messages.middleware.MessageMiddleware',  # Required for admin
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'score_checker.urls'
@@ -88,7 +89,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'cibil',  # Your database name
         'USER': 'root',
-        'PASSWORD': 'Dinesh@2003',  # Your MySQL password
+        'PASSWORD': 'Prathiksha@1404',  # Your MySQL password
         'HOST': 'localhost',
         'PORT': '3306',
         'OPTIONS': {

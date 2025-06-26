@@ -1,336 +1,304 @@
-# dynamic_cibil_calculator.py - Complete Implementation
-
 from datetime import datetime, timedelta
 from decimal import Decimal
-from django.db.models import Avg, Count, Sum, Q
-from django.utils import timezone
 import math
-from .models import Customer, PaymentHistory, CreditCard, Loan, BankAccount, CibilScore
+from typing import Dict, Any, Optional, Tuple
 
-class DynamicCibilScoreCalculator:
+class UserInputCibilCalculator:
+    """
+    Dynamic CIBIL Score Calculator based purely on user inputs
+    No default values - all calculations based on provided data
+    """
     
-    def __init__(self, customer, custom_weights=None):
-        self.customer = customer
+    def __init__(self, user_financial_data: Dict[str, Any], custom_weights: Dict[str, float]):
+        """
+        Initialize calculator with user financial data and custom weights
         
-        # Default weights (can be overridden by user)
-        self.default_score_factors = {
-            'payment_history': 0.35,
-            'credit_utilization': 0.30,
-            'credit_history_length': 0.15,
-            'credit_mix': 0.10,
-            'new_credit': 0.10
-        }
+        Args:
+            user_financial_data: Dictionary containing all financial information
+            custom_weights: Dictionary with custom weight percentages for each factor
+        """
+        self.financial_data = user_financial_data
+        self.weights = self._normalize_weights(custom_weights)
         
-        # Use custom weights if provided, otherwise use defaults
-        if custom_weights:
-            self.score_factors = self._validate_and_normalize_weights(custom_weights)
-        else:
-            self.score_factors = self.default_score_factors.copy()
-        
-        # Dynamic score range - adapts based on credit profile
-        self.base_min_score = 200
-        self.base_max_score = 1000
+        # Validate required data
+        self._validate_input_data()
     
-    def _validate_and_normalize_weights(self, custom_weights):
+    def _validate_input_data(self) -> None:
+        """Validate that all required input data is provided"""
+        required_fields = [
+            'total_payments', 'on_time_payments', 'late_payments', 'missed_payments',
+            'total_credit_limit', 'current_balance', 'credit_history_years',
+            'has_credit_cards', 'has_home_loan', 'has_car_loan', 'has_personal_loan',
+            'has_bank_accounts', 'recent_accounts_last_6_months'
+        ]
+        
+        for field in required_fields:
+            if field not in self.financial_data:
+                raise ValueError(f"Required field '{field}' missing from financial data")
+    
+    def _normalize_weights(self, weights: Dict[str, float]) -> Dict[str, float]:
         """
-        Validate and normalize user-provided weights to ensure they sum to 100%
+        Normalize weights to ensure they sum to 100%
+        
+        Args:
+            weights: Dictionary with weight percentages
+            
+        Returns:
+            Normalized weights dictionary
         """
-        # Convert percentage to decimal if needed
+        required_factors = [
+            'payment_history', 'credit_utilization', 'credit_history_length',
+            'credit_mix', 'new_credit'
+        ]
+        
+        # Validate all factors are present
+        for factor in required_factors:
+            if factor not in weights:
+                raise ValueError(f"Weight for '{factor}' not provided")
+        
+        # Convert to decimal values and normalize
+        total_weight = sum(weights.values())
+        if total_weight == 0:
+            raise ValueError("Total weights cannot be zero")
+        
         normalized_weights = {}
-        for key, value in custom_weights.items():
-            if key in self.default_score_factors:
-                # Convert percentage to decimal (e.g., 30 -> 0.30)
-                normalized_value = float(value) / 100 if float(value) > 1 else float(value)
-                normalized_weights[key] = normalized_value
-        
-        # Fill missing weights with defaults
-        for key in self.default_score_factors:
-            if key not in normalized_weights:
-                normalized_weights[key] = self.default_score_factors[key]
-        
-        # Normalize to ensure sum equals 1.0
-        total_weight = sum(normalized_weights.values())
-        if total_weight != 1.0:
-            for key in normalized_weights:
-                normalized_weights[key] = normalized_weights[key] / total_weight
+        for factor, weight in weights.items():
+            normalized_weights[factor] = weight / total_weight
         
         return normalized_weights
     
-    def calculate_dynamic_cibil_score(self, commit=True):
-        """
-        Calculate CIBIL score with dynamic scaling and user-defined weights
-        """
-        # Calculate individual factor scores
-        payment_history_score = self._calculate_payment_history_score()
-        credit_utilization_score = self._calculate_credit_utilization_score()
-        credit_history_length_score = self._calculate_credit_history_length_score()
-        credit_mix_score = self._calculate_credit_mix_score()
-        new_credit_score = self._calculate_new_credit_score()
-        
-        # Calculate weighted contributions using custom weights
-        payment_history_contribution = payment_history_score * self.score_factors['payment_history']
-        credit_utilization_contribution = credit_utilization_score * self.score_factors['credit_utilization']
-        credit_history_length_contribution = credit_history_length_score * self.score_factors['credit_history_length']
-        credit_mix_contribution = credit_mix_score * self.score_factors['credit_mix']
-        new_credit_contribution = new_credit_score * self.score_factors['new_credit']
-        
-        # Calculate base weighted score (0-100 scale)
-        base_final_score = (
-            payment_history_contribution +
-            credit_utilization_contribution +
-            credit_history_length_contribution +
-            credit_mix_contribution +
-            new_credit_contribution
-        )
-        
-        # Apply behavioral adjustments
-        behavioral_multiplier = self._get_behavioral_adjustments()
-        adjusted_final_score = base_final_score * behavioral_multiplier
-        
-        # Dynamic score range calculation
-        dynamic_range = self._calculate_dynamic_score_range()
-        
-        # Convert to dynamic CIBIL scale
-        base_cibil_score = self._convert_to_dynamic_scale(base_final_score, dynamic_range)
-        final_cibil_score = self._convert_to_dynamic_scale(adjusted_final_score, dynamic_range)
-        
-        # Get additional metrics
-        metrics = self._get_additional_metrics()
-        
-        # Create enhanced CibilScore object
-        cibil_score_obj = CibilScore(
-            customer=self.customer,
-            score=final_cibil_score,
-            payment_history_score=payment_history_score,
-            credit_utilization_score=credit_utilization_score,
-            credit_history_length_score=credit_history_length_score,
-            credit_mix_score=credit_mix_score,
-            new_credit_score=new_credit_score,
-            **metrics
-        )
-
-        if commit:
-            CibilScore.objects.filter(customer=self.customer, is_latest=True).update(is_latest=False)
-            cibil_score_obj.save()
-        
-        return cibil_score_obj, {
-            'base_score': base_cibil_score,
-            'final_score': final_cibil_score,
-            'behavioral_multiplier': behavioral_multiplier,
-            'dynamic_range': dynamic_range,
-            'custom_weights_used': self.score_factors
-        }
-
-    # CORE CALCULATION METHODS - These were missing!
-
-    def _calculate_payment_history_score(self):
+    def calculate_payment_history_score(self) -> float:
         """
         Calculate payment history score based on payment patterns
+        
+        Returns:
+            Payment history score (0-100)
         """
-        payments = PaymentHistory.objects.filter(customer=self.customer)
+        total_payments = self.financial_data['total_payments']
+        on_time_payments = self.financial_data['on_time_payments']
+        late_payments = self.financial_data['late_payments']
+        missed_payments = self.financial_data['missed_payments']
         
-        if not payments.exists():
-            return 50.0  # Neutral score if no history
+        if total_payments == 0:
+            return 0.0  # No payment history
         
-        total_payments = payments.count()
-        on_time_payments = payments.filter(payment_status='ON_TIME').count()
-        late_payments = payments.filter(
-            payment_status__in=['LATE_1_30', 'LATE_31_60', 'LATE_61_90', 'LATE_90_PLUS']
-        ).count()
-        missed_payments = payments.filter(
-            payment_status__in=['MISSED', 'DEFAULTED']
-        ).count()
+        # Validate payment consistency
+        if (on_time_payments + late_payments + missed_payments) != total_payments:
+            raise ValueError("Payment counts don't match total payments")
         
-        # Calculate score based on payment patterns
+        # Calculate ratios
         on_time_ratio = on_time_payments / total_payments
         late_ratio = late_payments / total_payments
         missed_ratio = missed_payments / total_payments
         
-        # Score calculation
+        # Score calculation with penalties
         base_score = on_time_ratio * 100
         late_penalty = late_ratio * 30
-        missed_penalty = missed_ratio * 50
+        missed_penalty = missed_ratio * 60  # Higher penalty for missed payments
         
         score = max(0, base_score - late_penalty - missed_penalty)
         return round(score, 2)
     
-    def _calculate_credit_utilization_score(self):
+    def calculate_credit_utilization_score(self) -> float:
         """
-        Calculate credit utilization score based on credit card usage
+        Calculate credit utilization score
+        
+        Returns:
+            Credit utilization score (0-100)
         """
-        credit_cards = CreditCard.objects.filter(customer=self.customer, is_active=True)
-        
-        if not credit_cards.exists():
-            return 70.0  # Neutral-positive score if no credit cards
-        
-        total_limit = credit_cards.aggregate(
-            total=Sum('credit_limit'))['total'] or Decimal('0')
-        total_balance = credit_cards.aggregate(
-            total=Sum('current_balance'))['total'] or Decimal('0')
+        total_limit = self.financial_data['total_credit_limit']
+        current_balance = self.financial_data['current_balance']
         
         if total_limit == 0:
-            return 70.0
+            return 0.0  # No credit available
         
-        utilization_ratio = float(total_balance / total_limit)
+        if current_balance < 0:
+            raise ValueError("Current balance cannot be negative")
         
-        # Enhanced scoring with more granular levels
-        if utilization_ratio <= 0.05:
-            return 95.0  # Very low usage
+        utilization_ratio = current_balance / total_limit
+        
+        # Enhanced scoring based on utilization levels
+        if utilization_ratio <= 0.01:
+            return 90.0  # Very low usage
         elif utilization_ratio <= 0.10:
-            return 100.0  # Sweet spot
+            return 100.0  # Optimal usage
         elif utilization_ratio <= 0.30:
-            return 85.0
+            return 85.0  # Good usage
         elif utilization_ratio <= 0.50:
-            return 65.0
+            return 65.0  # Moderate usage
         elif utilization_ratio <= 0.70:
-            return 45.0
+            return 40.0  # High usage
         elif utilization_ratio <= 0.90:
-            return 25.0
+            return 20.0  # Very high usage
         else:
-            return 10.0
+            return 5.0   # Maxed out
     
-    def _calculate_credit_history_length_score(self):
+    def calculate_credit_history_length_score(self) -> float:
         """
-        Calculate credit history length score based on account age
+        Calculate credit history length score
+        
+        Returns:
+            Credit history length score (0-100)
         """
-        # Get oldest credit account
-        oldest_loan = Loan.objects.filter(customer=self.customer).order_by('loan_start_date').first()
-        oldest_card = CreditCard.objects.filter(customer=self.customer).order_by('card_issued_date').first()
-        oldest_account = BankAccount.objects.filter(customer=self.customer).order_by('account_opened_date').first()
+        years_of_history = self.financial_data['credit_history_years']
         
-        oldest_dates = []
-        if oldest_loan:
-            oldest_dates.append(oldest_loan.loan_start_date)
-        if oldest_card:
-            oldest_dates.append(oldest_card.card_issued_date)
-        if oldest_account:
-            oldest_dates.append(oldest_account.account_opened_date)
+        if years_of_history < 0:
+            raise ValueError("Credit history years cannot be negative")
         
-        if not oldest_dates:
-            return 30.0  # Low score if no credit history
-        
-        oldest_date = min(oldest_dates)
-        years_of_history = (datetime.now().date() - oldest_date).days / 365.25
-        
-        # Score based on years of history
-        if years_of_history >= 10:
+        # Score based on years of credit history
+        if years_of_history >= 15:
             return 100.0
+        elif years_of_history >= 10:
+            return 90.0
         elif years_of_history >= 7:
-            return 85.0
+            return 80.0
         elif years_of_history >= 5:
-            return 70.0
+            return 65.0
         elif years_of_history >= 3:
-            return 55.0
+            return 50.0
         elif years_of_history >= 1:
-            return 40.0
+            return 35.0
+        elif years_of_history >= 0.5:
+            return 20.0
         else:
-            return 25.0
+            return 5.0
     
-    def _calculate_credit_mix_score(self):
+    def calculate_credit_mix_score(self) -> float:
         """
         Calculate credit mix score based on variety of credit types
+        
+        Returns:
+            Credit mix score (0-100)
         """
-        loan_types = set(Loan.objects.filter(
-            customer=self.customer, status='ACTIVE'
-        ).values_list('loan_type', flat=True))
+        has_credit_cards = self.financial_data['has_credit_cards']
+        has_home_loan = self.financial_data['has_home_loan']
+        has_car_loan = self.financial_data['has_car_loan']
+        has_personal_loan = self.financial_data['has_personal_loan']
+        has_bank_accounts = self.financial_data['has_bank_accounts']
         
-        has_credit_cards = CreditCard.objects.filter(
-            customer=self.customer, is_active=True
-        ).exists()
-        
-        has_bank_accounts = BankAccount.objects.filter(
-            customer=self.customer, is_active=True
-        ).exists()
-        
-        credit_mix_score = 0
+        score = 0
         
         # Points for different credit types
         if has_credit_cards:
-            credit_mix_score += 30
+            score += 25
         if has_bank_accounts:
-            credit_mix_score += 20
-        if 'HOME_LOAN' in loan_types:
-            credit_mix_score += 25
-        if 'CAR_LOAN' in loan_types:
-            credit_mix_score += 15
-        if 'PERSONAL_LOAN' in loan_types:
-            credit_mix_score += 10
+            score += 20
+        if has_home_loan:
+            score += 30  # Higher weight for secured loans
+        if has_car_loan:
+            score += 15
+        if has_personal_loan:
+            score += 10
         
-        return min(100.0, credit_mix_score)
+        return min(100.0, score)
     
-    def _calculate_new_credit_score(self):
+    def calculate_new_credit_score(self) -> float:
         """
         Calculate new credit score based on recent credit activity
+        
+        Returns:
+            New credit score (0-100)
         """
-        # Recent accounts (last 6 months)
-        six_months_ago = timezone.now() - timedelta(days=180)
+        recent_accounts = self.financial_data['recent_accounts_last_6_months']
         
-        recent_loans = Loan.objects.filter(
-            customer=self.customer,
-            created_at__gte=six_months_ago
-        ).count()
-        
-        recent_cards = CreditCard.objects.filter(
-            customer=self.customer,
-            created_at__gte=six_months_ago
-        ).count()
-        
-        total_recent_accounts = recent_loans + recent_cards
+        if recent_accounts < 0:
+            raise ValueError("Recent accounts count cannot be negative")
         
         # Score based on recent credit activity
-        if total_recent_accounts == 0:
-            return 100.0
-        elif total_recent_accounts == 1:
-            return 80.0
-        elif total_recent_accounts == 2:
-            return 60.0
-        elif total_recent_accounts <= 4:
-            return 40.0
+        if recent_accounts == 0:
+            return 100.0  # No recent activity is good
+        elif recent_accounts == 1:
+            return 80.0   # One new account is acceptable
+        elif recent_accounts == 2:
+            return 60.0   # Two accounts show some activity
+        elif recent_accounts <= 4:
+            return 35.0   # Multiple accounts raise concerns
         else:
-            return 20.0
-
-    # DYNAMIC SCORING METHODS
-
-    def _calculate_dynamic_score_range(self):
+            return 10.0   # Too many new accounts
+    
+    def calculate_behavioral_adjustments(self) -> float:
         """
-        Calculate dynamic score range based on customer's credit profile
-        """
-        # Factors that influence score range
-        credit_history_years = self._get_credit_age_years()
-        total_credit_limit = self._get_total_credit_limit()
-        account_diversity = self._get_account_diversity_score()
-        payment_consistency = self._get_payment_consistency_score()
+        Calculate behavioral adjustments based on financial patterns
         
-        # Base range adjustment factors
+        Returns:
+            Behavioral multiplier (0.8 - 1.2)
+        """
+        multiplier = 1.0
+        
+        # Credit utilization behavior
+        utilization_ratio = self.financial_data['current_balance'] / max(1, self.financial_data['total_credit_limit'])
+        
+        # Penalty for extreme underutilization (dormant accounts)
+        if utilization_ratio < 0.01 and self.financial_data['total_credit_limit'] > 50000:
+            multiplier *= 0.95  # 5% penalty
+        
+        # Bonus for optimal utilization
+        elif 0.05 <= utilization_ratio <= 0.15:
+            multiplier *= 1.03  # 3% bonus
+        
+        # Payment consistency bonus
+        if self.financial_data['total_payments'] > 0:
+            consistency_ratio = self.financial_data['on_time_payments'] / self.financial_data['total_payments']
+            if consistency_ratio >= 0.95:
+                multiplier *= 1.05  # 5% bonus for excellent payment history
+            elif consistency_ratio >= 0.85:
+                multiplier *= 1.02  # 2% bonus for good payment history
+        
+        # Credit mix diversity bonus
+        credit_types = sum([
+            self.financial_data['has_credit_cards'],
+            self.financial_data['has_home_loan'],
+            self.financial_data['has_car_loan'],
+            self.financial_data['has_personal_loan'],
+            self.financial_data['has_bank_accounts']
+        ])
+        
+        if credit_types >= 4:
+            multiplier *= 1.04  # 4% bonus for excellent diversity
+        elif credit_types >= 3:
+            multiplier *= 1.02  # 2% bonus for good diversity
+        elif credit_types <= 1:
+            multiplier *= 0.96  # 4% penalty for poor diversity
+        
+        return round(max(0.8, min(1.2, multiplier)), 4)
+    
+    def calculate_dynamic_score_range(self) -> Dict[str, Any]:
+        """
+        Calculate dynamic score range based on user's credit profile
+        
+        Returns:
+            Dictionary with dynamic score range information
+        """
+        base_min = 300
+        base_max = 900
+        
+        # Factors affecting score range
+        credit_years = self.financial_data['credit_history_years']
+        credit_limit = self.financial_data['total_credit_limit']
+        
         range_multiplier = 1.0
         
-        # Adjust range based on credit maturity
-        if credit_history_years >= 10:
-            range_multiplier += 0.2  # Mature credit history gets wider range
-        elif credit_history_years >= 5:
-            range_multiplier += 0.1
-        elif credit_history_years < 1:
-            range_multiplier -= 0.1  # New credit gets narrower range
-        
-        # Adjust range based on credit exposure
-        if total_credit_limit > 500000:  # High credit limits
+        # Adjust based on credit maturity
+        if credit_years >= 10:
             range_multiplier += 0.15
-        elif total_credit_limit > 100000:
-            range_multiplier += 0.05
-        elif total_credit_limit < 25000:
-            range_multiplier -= 0.05
+        elif credit_years >= 5:
+            range_multiplier += 0.08
+        elif credit_years < 1:
+            range_multiplier -= 0.10
         
-        # Adjust range based on account diversity
-        if account_diversity >= 80:
-            range_multiplier += 0.1
-        elif account_diversity < 40:
-            range_multiplier -= 0.05
+        # Adjust based on credit exposure
+        if credit_limit > 500000:
+            range_multiplier += 0.12
+        elif credit_limit > 100000:
+            range_multiplier += 0.06
+        elif credit_limit < 25000:
+            range_multiplier -= 0.08
         
-        # Calculate dynamic min and max
-        range_expansion = (self.base_max_score - self.base_min_score) * (range_multiplier - 1)
+        # Calculate dynamic range
+        range_expansion = (base_max - base_min) * (range_multiplier - 1)
         
-        dynamic_min = max(150, int(self.base_min_score - range_expansion/2))
-        dynamic_max = min(1200, int(self.base_max_score + range_expansion/2))
+        dynamic_min = max(250, int(base_min - range_expansion/2))
+        dynamic_max = min(950, int(base_max + range_expansion/2))
         
         return {
             'min_score': dynamic_min,
@@ -339,317 +307,137 @@ class DynamicCibilScoreCalculator:
             'range_width': dynamic_max - dynamic_min
         }
     
-    def _convert_to_dynamic_scale(self, score_0_100, dynamic_range):
+    def convert_to_cibil_scale(self, score_0_100: float, dynamic_range: Dict[str, Any]) -> int:
         """
-        Convert 0-100 score to dynamic CIBIL scale using advanced algorithms
+        Convert 0-100 score to CIBIL scale using sigmoid transformation
+        
+        Args:
+            score_0_100: Score in 0-100 range
+            dynamic_range: Dynamic range information
+            
+        Returns:
+            CIBIL score in dynamic range
         """
-        # Normalize score to 0-1 range
-        normalized_score = max(0, min(100, score_0_100)) / 100.0
+        # Normalize to 0-1
+        normalized = max(0, min(100, score_0_100)) / 100.0
         
-        # Apply sigmoid transformation for more realistic distribution
-        sigmoid_factor = 8  # Controls steepness of the curve
-        sigmoid_score = 1 / (1 + math.exp(-sigmoid_factor * (normalized_score - 0.5)))
+        # Apply sigmoid transformation for realistic distribution
+        sigmoid_factor = 6
+        sigmoid_score = 1 / (1 + math.exp(-sigmoid_factor * (normalized - 0.5)))
         
-        # Apply power transformation for fine-tuning
-        if normalized_score < 0.5:
-            power_score = math.pow(sigmoid_score, 1.2)  # Slightly compress lower scores
+        # Apply power transformation
+        if normalized < 0.5:
+            power_score = math.pow(sigmoid_score, 1.1)
         else:
-            power_score = math.pow(sigmoid_score, 0.9)   # Slightly expand higher scores
+            power_score = math.pow(sigmoid_score, 0.95)
         
         # Map to dynamic range
         score_range = dynamic_range['max_score'] - dynamic_range['min_score']
         final_score = dynamic_range['min_score'] + (power_score * score_range)
         
         return max(dynamic_range['min_score'], min(dynamic_range['max_score'], int(final_score)))
-
-    # BEHAVIORAL ADJUSTMENT METHODS
-
-    def _get_behavioral_adjustments(self):
+    
+    def calculate_cibil_score(self) -> Tuple[Dict[str, Any], Dict[str, Any]]:
         """
-        Enhanced behavioral adjustments based on multiple factors
+        Calculate complete CIBIL score with detailed breakdown
+        
+        Returns:
+            Tuple of (score_result, detailed_breakdown)
         """
-        multiplier = 1.0
+        # Calculate individual factor scores
+        payment_history_score = self.calculate_payment_history_score()
+        credit_utilization_score = self.calculate_credit_utilization_score()
+        credit_history_length_score = self.calculate_credit_history_length_score()
+        credit_mix_score = self.calculate_credit_mix_score()
+        new_credit_score = self.calculate_new_credit_score()
         
-        # Underutilization penalty
-        utilization_multiplier = self._get_underutilization_penalty()
-        multiplier *= utilization_multiplier
-        
-        # Credit diversity bonus/penalty
-        diversity_multiplier = self._get_credit_diversity_adjustment()
-        multiplier *= diversity_multiplier
-        
-        # Payment pattern consistency bonus
-        consistency_multiplier = self._get_payment_consistency_adjustment()
-        multiplier *= consistency_multiplier
-        
-        # Credit growth pattern adjustment
-        growth_multiplier = self._get_credit_growth_adjustment()
-        multiplier *= growth_multiplier
-        
-        return round(multiplier, 4)
-    
-    def _get_underutilization_penalty(self):
-        """Apply penalty for severe underutilization of credit"""
-        credit_cards = CreditCard.objects.filter(customer=self.customer, is_active=True)
-        
-        if not credit_cards.exists():
-            return 1.0
-        
-        total_limit = credit_cards.aggregate(total=Sum('credit_limit'))['total'] or Decimal('0')
-        total_balance = credit_cards.aggregate(total=Sum('current_balance'))['total'] or Decimal('0')
-        
-        if total_limit > 0:
-            utilization = float(total_balance / total_limit)
-            
-            if utilization < 0.05 and total_limit > 100000:
-                return 0.85  # 15% penalty
-            elif utilization < 0.02 and total_limit > 50000:
-                return 0.92  # 8% penalty
-            elif utilization < 0.01 and total_limit > 25000:
-                return 0.95  # 5% penalty
-        
-        return 1.0
-    
-    def _get_credit_diversity_adjustment(self):
-        """Adjust score based on credit product diversity"""
-        diversity_score = self._get_account_diversity_score()
-        
-        if diversity_score >= 80:
-            return 1.05  # 5% bonus for excellent diversity
-        elif diversity_score >= 60:
-            return 1.02  # 2% bonus for good diversity
-        elif diversity_score < 30:
-            return 0.95  # 5% penalty for poor diversity
-        
-        return 1.0
-    
-    def _get_payment_consistency_adjustment(self):
-        """Adjust score based on payment consistency"""
-        consistency_score = self._get_payment_consistency_score()
-        
-        if consistency_score >= 90:
-            return 1.03  # 3% bonus for excellent consistency
-        elif consistency_score >= 75:
-            return 1.01  # 1% bonus for good consistency
-        elif consistency_score < 50:
-            return 0.97  # 3% penalty for poor consistency
-        
-        return 1.0
-    
-    def _get_credit_growth_adjustment(self):
-        """Adjust score based on credit growth pattern"""
-        growth_score = self._get_credit_growth_score()
-        
-        if 70 <= growth_score <= 85:  # Optimal growth range
-            return 1.02  # 2% bonus for optimal growth
-        elif growth_score > 90 or growth_score < 30:  # Too fast or too slow growth
-            return 0.98  # 2% penalty
-        
-        return 1.0
-
-    # HELPER METHODS
-
-    def _get_total_credit_limit(self):
-        """Get total credit limit across all cards"""
-        return float(CreditCard.objects.filter(
-            customer=self.customer, is_active=True
-        ).aggregate(total=Sum('credit_limit'))['total'] or Decimal('0'))
-    
-    def _get_account_diversity_score(self):
-        """Calculate account diversity score"""
-        score = 0
-        
-        # Credit cards
-        if CreditCard.objects.filter(customer=self.customer, is_active=True).exists():
-            score += 25
-        
-        # Different loan types
-        loan_types = set(Loan.objects.filter(
-            customer=self.customer, status='ACTIVE'
-        ).values_list('loan_type', flat=True))
-        
-        score += len(loan_types) * 15  # 15 points per loan type
-        
-        # Bank accounts
-        if BankAccount.objects.filter(customer=self.customer, is_active=True).exists():
-            score += 20
-        
-        return min(100.0, score)
-    
-    def _get_payment_consistency_score(self):
-        """Calculate payment consistency score"""
-        six_months_ago = timezone.now() - timedelta(days=180)
-        recent_payments = PaymentHistory.objects.filter(
-            customer=self.customer,
-            payment_date__gte=six_months_ago
-        )
-        
-        if recent_payments.count() < 3:
-            return 50.0
-        
-        on_time_payments = recent_payments.filter(payment_status='ON_TIME').count()
-        total_payments = recent_payments.count()
-        
-        consistency_ratio = on_time_payments / total_payments
-        return consistency_ratio * 100
-    
-    def _get_credit_growth_score(self):
-        """Calculate credit growth score"""
-        one_year_ago = timezone.now() - timedelta(days=365)
-        
-        current_limit = self._get_total_credit_limit()
-        old_cards = CreditCard.objects.filter(
-            customer=self.customer,
-            created_at__lte=one_year_ago
-        ).aggregate(total=Sum('credit_limit'))['total'] or Decimal('0')
-        
-        if old_cards > 0:
-            growth_rate = (current_limit - float(old_cards)) / float(old_cards)
-            # Optimal growth is 10-50% annually
-            if 0.10 <= growth_rate <= 0.50:
-                return 85.0
-            elif 0.05 <= growth_rate < 0.10 or 0.50 < growth_rate <= 0.80:
-                return 70.0
-            else:
-                return 50.0
-        
-        return 60.0  # Neutral for new customers
-    
-    def _get_credit_age_years(self):
-        """Get credit history age in years"""
-        oldest_loan = Loan.objects.filter(customer=self.customer).order_by('loan_start_date').first()
-        oldest_card = CreditCard.objects.filter(customer=self.customer).order_by('card_issued_date').first()
-        oldest_account = BankAccount.objects.filter(customer=self.customer).order_by('account_opened_date').first()
-        
-        oldest_dates = []
-        if oldest_loan:
-            oldest_dates.append(oldest_loan.loan_start_date)
-        if oldest_card:
-            oldest_dates.append(oldest_card.card_issued_date)
-        if oldest_account:
-            oldest_dates.append(oldest_account.account_opened_date)
-        
-        if oldest_dates:
-            oldest_date = min(oldest_dates)
-            return (datetime.now().date() - oldest_date).days / 365.25
-        return 0
-    
-    def _get_additional_metrics(self):
-        """Get additional metrics for the CIBIL score record"""
-        # Count accounts
-        total_accounts = (
-            Loan.objects.filter(customer=self.customer).count() +
-            CreditCard.objects.filter(customer=self.customer).count() +
-            BankAccount.objects.filter(customer=self.customer).count()
-        )
-        
-        active_accounts = (
-            Loan.objects.filter(customer=self.customer, status='ACTIVE').count() +
-            CreditCard.objects.filter(customer=self.customer, is_active=True).count() +
-            BankAccount.objects.filter(customer=self.customer, is_active=True).count()
-        )
-        
-        # Credit limits and outstanding
-        credit_cards = CreditCard.objects.filter(customer=self.customer, is_active=True)
-        total_credit_limit = credit_cards.aggregate(
-            total=Sum('credit_limit'))['total'] or Decimal('0')
-        total_outstanding = (
-            credit_cards.aggregate(total=Sum('current_balance'))['total'] or Decimal('0')
-        ) + (
-            Loan.objects.filter(customer=self.customer, status='ACTIVE').aggregate(
-                total=Sum('outstanding_amount'))['total'] or Decimal('0')
-        )
-        
-        # Utilization ratio
-        utilization_ratio = 0
-        if total_credit_limit > 0:
-            utilization_ratio = float(
-                (credit_cards.aggregate(total=Sum('current_balance'))['total'] or Decimal('0')) 
-                / total_credit_limit
-            )
-        
-        return {
-            'total_accounts': total_accounts,
-            'active_accounts': active_accounts,
-            'total_credit_limit': total_credit_limit,
-            'total_outstanding': total_outstanding,
-            'credit_utilization_ratio': round(utilization_ratio * 100, 2)
-        }
-
-    # COMPREHENSIVE BREAKDOWN METHOD
-
-    def get_comprehensive_score_breakdown(self):
-        """Get comprehensive breakdown with all dynamic factors"""
-        # Calculate all individual scores
-        payment_history_score = self._calculate_payment_history_score()
-        credit_utilization_score = self._calculate_credit_utilization_score()
-        credit_history_length_score = self._calculate_credit_history_length_score()
-        credit_mix_score = self._calculate_credit_mix_score()
-        new_credit_score = self._calculate_new_credit_score()
-        
-        # Calculate contributions with custom weights
-        contributions = {}
-        factor_scores = {
-            'payment_history': payment_history_score,
-            'credit_utilization': credit_utilization_score,
-            'credit_history_length': credit_history_length_score,
-            'credit_mix': credit_mix_score,
-            'new_credit': new_credit_score
+        # Calculate weighted contributions
+        weighted_contributions = {
+            'payment_history': payment_history_score * self.weights['payment_history'],
+            'credit_utilization': credit_utilization_score * self.weights['credit_utilization'],
+            'credit_history_length': credit_history_length_score * self.weights['credit_history_length'],
+            'credit_mix': credit_mix_score * self.weights['credit_mix'],
+            'new_credit': new_credit_score * self.weights['new_credit']
         }
         
-        for factor in self.score_factors:
-            raw_score = factor_scores[factor]
-            weighted_contribution = raw_score * self.score_factors[factor]
-            contributions[factor] = {
-                'weight_percentage': round(self.score_factors[factor] * 100, 1),
-                'raw_score': round(raw_score, 2),
-                'weighted_contribution': round(weighted_contribution, 2),
-                'score_rating': self._get_score_rating(raw_score)
-            }
+        # Calculate base score (0-100)
+        base_score = sum(weighted_contributions.values())
         
-        # Calculate total scores
-        base_total = sum(contrib['weighted_contribution'] for contrib in contributions.values())
-        behavioral_multiplier = self._get_behavioral_adjustments()
-        adjusted_total = base_total * behavioral_multiplier
+        # Apply behavioral adjustments
+        behavioral_multiplier = self.calculate_behavioral_adjustments()
+        adjusted_score = base_score * behavioral_multiplier
         
-        # Dynamic range calculation
-        dynamic_range = self._calculate_dynamic_score_range()
+        # Calculate dynamic range
+        dynamic_range = self.calculate_dynamic_score_range()
         
-        # Final scores
-        base_cibil_score = self._convert_to_dynamic_scale(base_total, dynamic_range)
-        final_cibil_score = self._convert_to_dynamic_scale(adjusted_total, dynamic_range)
+        # Convert to CIBIL scale
+        base_cibil_score = self.convert_to_cibil_scale(base_score, dynamic_range)
+        final_cibil_score = self.convert_to_cibil_scale(adjusted_score, dynamic_range)
         
-        # Calculate contribution percentages
-        for factor in contributions:
-            if adjusted_total > 0:
-                contributions[factor]['contribution_percentage'] = round(
-                    (contributions[factor]['weighted_contribution'] / adjusted_total) * 100, 1
-                )
-            else:
-                contributions[factor]['contribution_percentage'] = 0
-        
-        return {
+        # Score result
+        score_result = {
             'final_cibil_score': final_cibil_score,
             'base_cibil_score': base_cibil_score,
-            'dynamic_range': dynamic_range,
-            'custom_weights': {k: round(v * 100, 1) for k, v in self.score_factors.items()},
-            'behavioral_adjustments': {
-                'total_multiplier': behavioral_multiplier,
-                'underutilization_penalty': self._get_underutilization_penalty(),
-                'diversity_adjustment': self._get_credit_diversity_adjustment(),
-                'consistency_adjustment': self._get_payment_consistency_adjustment(),
-                'growth_adjustment': self._get_credit_growth_adjustment()
+            'score_grade': self._get_score_grade(final_cibil_score),
+            'improvement_points': max(0, 100 - base_score)
+        }
+        
+        # Detailed breakdown
+        detailed_breakdown = {
+            'factor_scores': {
+                'payment_history': {
+                    'raw_score': round(payment_history_score, 2),
+                    'weight_percentage': round(self.weights['payment_history'] * 100, 1),
+                    'weighted_contribution': round(weighted_contributions['payment_history'], 2),
+                    'rating': self._get_score_rating(payment_history_score)
+                },
+                'credit_utilization': {
+                    'raw_score': round(credit_utilization_score, 2),
+                    'weight_percentage': round(self.weights['credit_utilization'] * 100, 1),
+                    'weighted_contribution': round(weighted_contributions['credit_utilization'], 2),
+                    'rating': self._get_score_rating(credit_utilization_score)
+                },
+                'credit_history_length': {
+                    'raw_score': round(credit_history_length_score, 2),
+                    'weight_percentage': round(self.weights['credit_history_length'] * 100, 1),
+                    'weighted_contribution': round(weighted_contributions['credit_history_length'], 2),
+                    'rating': self._get_score_rating(credit_history_length_score)
+                },
+                'credit_mix': {
+                    'raw_score': round(credit_mix_score, 2),
+                    'weight_percentage': round(self.weights['credit_mix'] * 100, 1),
+                    'weighted_contribution': round(weighted_contributions['credit_mix'], 2),
+                    'rating': self._get_score_rating(credit_mix_score)
+                },
+                'new_credit': {
+                    'raw_score': round(new_credit_score, 2),
+                    'weight_percentage': round(self.weights['new_credit'] * 100, 1),
+                    'weighted_contribution': round(weighted_contributions['new_credit'], 2),
+                    'rating': self._get_score_rating(new_credit_score)
+                }
             },
-            'score_factors': contributions,
-            'summary': {
-                'base_total_score': round(base_total, 2),
-                'adjusted_total_score': round(adjusted_total, 2),
-                'improvement_potential': round(100 - base_total, 2),
-                'score_range_width': dynamic_range['range_width']
+            'calculations': {
+                'base_score_0_100': round(base_score, 2),
+                'behavioral_multiplier': behavioral_multiplier,
+                'adjusted_score_0_100': round(adjusted_score, 2),
+                'dynamic_range': dynamic_range
+            },
+            'financial_metrics': {
+                'credit_utilization_ratio': round((self.financial_data['current_balance'] / max(1, self.financial_data['total_credit_limit'])) * 100, 2),
+                'payment_success_rate': round((self.financial_data['on_time_payments'] / max(1, self.financial_data['total_payments'])) * 100, 2),
+                'credit_diversity_count': sum([
+                    self.financial_data['has_credit_cards'],
+                    self.financial_data['has_home_loan'],
+                    self.financial_data['has_car_loan'],
+                    self.financial_data['has_personal_loan'],
+                    self.financial_data['has_bank_accounts']
+                ])
             }
         }
+        
+        return score_result, detailed_breakdown
     
-    def _get_score_rating(self, score):
+    def _get_score_rating(self, score: float) -> str:
         """Get rating based on score"""
         if score >= 90:
             return "Excellent"
@@ -660,6 +448,21 @@ class DynamicCibilScoreCalculator:
         elif score >= 60:
             return "Fair"
         elif score >= 50:
+            return "Average"
+        else:
+            return "Poor"
+    
+    def _get_score_grade(self, cibil_score: int) -> str:
+        """Get grade based on CIBIL score"""
+        if cibil_score >= 800:
+            return "Excellent"
+        elif cibil_score >= 750:
+            return "Very Good"
+        elif cibil_score >= 700:
+            return "Good"
+        elif cibil_score >= 650:
+            return "Fair"
+        elif cibil_score >= 600:
             return "Average"
         else:
             return "Poor"

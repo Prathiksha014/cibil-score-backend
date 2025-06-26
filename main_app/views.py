@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.shortcuts import get_object_or_404
 from django.db import transaction
+from django.http import JsonResponse
 from datetime import datetime, timedelta
 from .models import (
     Customer, BankAccount, CreditCard, Loan, 
@@ -16,8 +17,7 @@ from .serializers import (
     CibilScoreRequestSerializer, BankAccountSerializer,
     CreditCardSerializer, LoanSerializer, PaymentHistorySerializer
 )
-from .cibil_calculator import DynamicCibilScoreCalculator  # Import the new calculator
-
+from .cibil_calculator import UserInputCibilCalculator  # Import the new calculator
 # from .cibil_calculator import  CibilScoreCalculator
 
 class CustomerViewSet(generics.ListCreateAPIView):
@@ -31,79 +31,55 @@ class CustomerDetailView(generics.RetrieveUpdateDestroyAPIView):
     lookup_field = 'pan_card_number'
     permission_classes = [AllowAny]
 
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def test_connection(request):
+    print(f'Ping from: {request.method}')
+    return JsonResponse({'message': 'Backend is working!'})
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def check_dynamic_cibil_score(request):
-    """
-    Enhanced endpoint to check CIBIL score with custom weight percentages.
-    Supports fully dynamic scoring with user-defined factor weights.
-    """
-    
-    # Extract data from request
     pan_card_number = request.data.get('pan_card_number')
     custom_weights = request.data.get('custom_weights', {})
-    
-    # Validate PAN card number
+    return process_cibil_score(pan_card_number, custom_weights)
+
+def process_cibil_score(pan_card_number, custom_weights):
+    # Validate PAN
     if not pan_card_number:
-        return Response(
-            {'error': 'PAN card number is required'},
-            status=status.HTTP_400_BAD_REQUEST
-        )
-    
-    # Validate custom weights format
-    if custom_weights:
-        try:
-            # Validate that weights are numeric and reasonable
-            valid_factors = ['payment_history', 'credit_utilization', 'credit_history_length', 'credit_mix', 'new_credit']
-            
-            for factor, weight in custom_weights.items():
-                if factor not in valid_factors:
-                    return Response(
-                        {'error': f'Invalid factor: {factor}. Valid factors are: {valid_factors}'},
-                        status=status.HTTP_400_BAD_REQUEST
-                    )
-                
-                weight_value = float(weight)
-                if weight_value < 0 or weight_value > 100:
-                    return Response(
-                        {'error': f'Weight for {factor} must be between 0 and 100'},
-                        status=status.HTTP_400_BAD_REQUEST
-                    )
-                    
-        except (ValueError, TypeError):
-            return Response(
-                {'error': 'Weights must be numeric values'},
-                status=status.HTTP_400_BAD_REQUEST
-            )
-    
-    # Get customer
+        return Response({'error': 'PAN card number is required'}, status=status.HTTP_400_BAD_REQUEST)
+
+    valid_factors = ['payment_history', 'credit_utilization', 'credit_history_length', 'credit_mix', 'new_credit']
+    try:
+        for factor, weight in custom_weights.items():
+            if factor not in valid_factors:
+                return Response(
+                    {'error': f'Invalid factor: {factor}. Valid factors are: {valid_factors}'},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+            if float(weight) < 0 or float(weight) > 100:
+                return Response(
+                    {'error': f'Weight for {factor} must be between 0 and 100'},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+    except Exception as e:
+        return Response({'error': 'Invalid weight format', 'details': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
     customer = get_object_or_404(Customer, pan_card_number=pan_card_number)
 
     try:
-        # Create calculator with custom weights
-        calculator = DynamicCibilScoreCalculator(customer, custom_weights)
-        
-        # Calculate dynamic CIBIL score
-        new_score, calculation_details = calculator.calculate_dynamic_cibil_score(commit=False)
+        calculator = UserInputCibilCalculator(customer, custom_weights)
+        new_score, _ = calculator.calculate_dynamic_cibil_score(commit=False)
         new_score.customer = customer
         new_score.is_latest = True
 
         with transaction.atomic():
-            # Mark all existing scores as not latest
             CibilScore.objects.filter(customer=customer, is_latest=True).update(is_latest=False)
-            
-            # Save the new score
             new_score.save()
-            
-            # Generate report (if you have this function)
-            # report = generate_cibil_report(new_score)
 
-        # Get comprehensive breakdown
-        comprehensive_breakdown = calculator.get_comprehensive_score_breakdown()
-        
-        # Prepare response
-        response_data = {
+        breakdown = calculator.get_comprehensive_score_breakdown()
+
+        return Response({
             'pan_card_number': pan_card_number,
             'customer': {
                 'full_name': customer.full_name,
@@ -112,37 +88,33 @@ def check_dynamic_cibil_score(request):
                 'pan_card_number': customer.pan_card_number
             },
             'cibil_score_summary': {
-                'final_score': comprehensive_breakdown['final_cibil_score'],
-                'base_score': comprehensive_breakdown['base_cibil_score'],
+                'final_score': breakdown['final_cibil_score'],
+                'base_score': breakdown['base_cibil_score'],
                 'score_range': {
-                    'minimum_possible': comprehensive_breakdown['dynamic_range']['min_score'],
-                    'maximum_possible': comprehensive_breakdown['dynamic_range']['max_score'],
-                    'range_width': comprehensive_breakdown['dynamic_range']['range_width']
+                    'minimum_possible': breakdown['dynamic_range']['min_score'],
+                    'maximum_possible': breakdown['dynamic_range']['max_score'],
+                    'range_width': breakdown['dynamic_range']['range_width']
                 },
-                'score_grade': get_cibil_grade(comprehensive_breakdown['final_cibil_score']),
-                'improvement_potential': comprehensive_breakdown['summary']['improvement_potential']
+                'score_grade': get_cibil_grade(breakdown['final_cibil_score']),
+                'improvement_potential': breakdown['summary']['improvement_potential']
             },
             'weight_configuration': {
                 'custom_weights_applied': bool(custom_weights),
-                'weights_used': comprehensive_breakdown['custom_weights'],
+                'weights_used': breakdown['custom_weights'],
                 'weights_normalized': True
             },
-            'detailed_breakdown': comprehensive_breakdown,
+            'detailed_breakdown': breakdown,
             'calculation_metadata': {
                 'calculation_date': new_score.score_date.isoformat(),
                 'dynamic_range_applied': True,
                 'behavioral_adjustments_applied': True,
                 'algorithm_version': '2.0_dynamic'
             }
-        }
-
-        return Response(response_data, status=status.HTTP_200_OK)
+        }, status=status.HTTP_200_OK)
 
     except Exception as e:
-        return Response(
-            {'error': 'Failed to calculate dynamic CIBIL score', 'details': str(e)},
-            status=status.HTTP_500_INTERNAL_SERVER_ERROR
-        )
+        return Response({'error': 'Failed to calculate dynamic CIBIL score', 'details': str(e)},
+                        status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 def get_cibil_grade(score):
     """Convert CIBIL score to letter grade"""
@@ -169,11 +141,9 @@ def get_cibil_grade(score):
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def check_cibil_score(request):
-    """
-    Original endpoint - redirects to dynamic calculation with default weights
-    """
-    # Simply call the dynamic endpoint with no custom weights
-    return check_dynamic_cibil_score(request)
+    pan_card_number = request.data.get('pan_card_number')
+    return process_cibil_score(pan_card_number, custom_weights={})
+
 
 
 @api_view(['GET'])
